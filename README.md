@@ -19,6 +19,8 @@ There are two pieces: the Arduino firmware and the Python CLI.
 
 1) This README (commit 639b126)
 2) Added requirements.txt (commit 639b126)
+3) Reading without limit (-l) now reads from 0x0000 to 0xFFFF (commit b6906de)
+4) Offset (-o) now works without Limit (-l) (commit b6906de)
 
 ## Usage
 
