@@ -30,6 +30,17 @@ Read the first 20 bytes of the EEPROM:
 Flash a binary file to the EEPROM:
 `python3 at28c_programmer.py -d /dev/ttyACM0 -w -f file.bin`
 
+### Options
+python3 at28c_programmer.py [-w | -r | -c] -d DEVICE [-f FILE] [-l LIMIT] [-o OFFSET]
+
+--device DEVICE  -d     The serial port the device is connected to.
+--read           -r     Initiates reading of the EEPROM.
+--write          -w     Initiates writing of the EEPROM.
+--file   FILE    -f     The binary file to write to the EEPROM.
+--clear          -c     Initiates clearing ot the EEPROM (Fills the EEPROM with 0xFF from 0x0000 to 0xFFFF).
+--limit  N       -l     Limit of the amount of bytes to read or write.
+--offset N       -o     Offset the start address of the read or write operation. (This offsets the address the writing starts at, not where it starts in the binary file to write).
+
 ## Notes
 
 1. This writes one byte at a time over the serial port. It is slow... If you have to flash huge binary files, you're probably better off with an off-the-shelf EEPROM programmer, but if you want to save $60, this will work for small files.
