@@ -17,7 +17,8 @@ There are two pieces: the Arduino firmware and the Python CLI.
 
 ## Changes
 
-
+1) This README (commit 639b126)
+2) Added requirements.txt (commit 639b126)
 
 ## Usage
 

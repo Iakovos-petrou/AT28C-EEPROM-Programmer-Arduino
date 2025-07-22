@@ -1,6 +1,8 @@
 # Python CLI for Parallel EEPROM Programmer
 # Colin Maykish
 # May 2021
+# Iakovos Petrou
+# July 2025
 
 import argparse
 import serial
@@ -41,15 +43,18 @@ def main():
     if args.read:
         print("Reading EEPROM")
 
-        for x in range(args.limit[0]):
-            command = "RD" + hex(addr)[2:].zfill(4).upper() + '\n'
+        if args.limit is None:
+            args.limit = [65536]
+
+        for x in range(addr,addr+args.limit[0]):
+            command = "RD" + hex(x)[2:].zfill(4).upper() + '\n'
             b = command.encode()
+
             ser.write(b)
 
             # Wait for response
             response = ser.readline().decode().strip()
-            print(hex(addr)[2:].zfill(4).upper() + " : " + response.zfill(2))
-            addr += 1
+            print(hex(x)[2:].zfill(4).upper() + " : " + response.zfill(2))
 
     elif args.write:
         print("Writing file " + args.file[0] + " to EEPROM")
@@ -107,8 +112,8 @@ def main():
             else:
                 print(str(addr - args.offset[0]) + " / " + str(args.limit[0]))
 
-    ser.close()
-    print("Closed " + ser.name)
+    #ser.close()
+    #print("Closed " + ser.name)
 
 
 main()
