@@ -1,4 +1,5 @@
-## Note: this project is archived and will not be maintained. Feel free to use it as a reference or create a fork.
+## Note: This is a fork of ![AT28C-EEPROM-Programmer-Arduino](https://github.com/crmaykish/AT28C-EEPROM-Programmer-Arduino).
+## The aim of this fork is to fix issues I found during usage of the original and to add KiCad files for an ATMEGA 
 
 # AT28C EEPROM Programmer for Arduino Mega
 
@@ -10,8 +11,13 @@ There are two pieces: the Arduino firmware and the Python CLI.
 
 1) Wire up the Arduino as shown in the breadboard diagram below. Don't forget the 10kohm pullup resistor on the WE pin.
 2) Flash the firmware to the Arduino.
-3) Install pyserial: `pip install pyserial`
-4) Run the Python CLI tool.
+3) Create a virtual environment
+4) Install the requirements from requirements.txt
+5) Run the Python CLI tool.
+
+## Changes
+
+
 
 ## Usage
 
@@ -23,9 +29,8 @@ Flash a binary file to the EEPROM:
 
 ## Notes
 
-1. I soldered this whole mess onto a PCB shield for the Arduino Mega with a ZIF socket to avoid having to wire this constantly.
-2. This writes one byte at a time over the serial port. It is slow... If you have to flash huge binary files, you're probably better off with an off-the-shelf EEPROM programmer, but if you want to save $60, this will work for small files.
-3. The `-w` write command also supports a limit `-l x` limit parameter. This will limit the writes to the first x bytes. Might be useful if your EEPROM binary file is padded with zeroes.
+1. This writes one byte at a time over the serial port. It is slow... If you have to flash huge binary files, you're probably better off with an off-the-shelf EEPROM programmer, but if you want to save $60, this will work for small files.
+2. The `-w` write command also supports a limit `-l x` limit parameter. This will limit the writes to the first x bytes. Might be useful if your EEPROM binary file is padded with zeroes.
 
 ## Circuit
 
