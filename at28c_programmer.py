@@ -7,6 +7,8 @@
 import argparse
 import serial
 import time
+import sys
+import os
 
 
 def main():
@@ -19,6 +21,7 @@ def main():
     parser.add_argument("-l", "--limit", action="store", type=int, nargs=1)
     parser.add_argument("-o", "--offset", action="store", type=int, nargs=1)
     parser.add_argument("-c", "--clear", action="store_true")
+    parser.add_argument("-n", "--no_ouput", action="store_true")
 
     args = parser.parse_args()
 
@@ -32,9 +35,15 @@ def main():
         exit(1)
 
     ser.flushInput()
-
+    
+         
+    
     print("Connected to " + ser.name + " at " + str(ser.baudrate))
-
+    io = sys.stdout
+    if args.no_ouput:
+        f = open(os.devnull, 'w')
+        sys.stdout = f
+    
     addr = 0
 
     if (args.offset):
@@ -112,8 +121,9 @@ def main():
             else:
                 print(str(addr - args.offset[0]) + " / " + str(args.limit[0]))
 
-    #ser.close()
-    #print("Closed " + ser.name)
+    ser.close()
+    sys.stdout = io
+    print("Closed " + ser.name)
 
 
 main()
