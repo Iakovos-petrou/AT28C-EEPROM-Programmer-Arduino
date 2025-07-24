@@ -1,5 +1,5 @@
-## Note: This is a fork of ![AT28C-EEPROM-Programmer-Arduino](https://github.com/crmaykish/AT28C-EEPROM-Programmer-Arduino).
-## The aim of this fork is to fix issues I found during usage of the original and to add KiCad files for an ATMEGA 
+## Note: This is a fork of [AT28C-EEPROM-Programmer-Arduino](https://github.com/crmaykish/AT28C-EEPROM-Programmer-Arduino).
+## The aim of this fork is to fix issues I found during usage of the original and to add KiCad files for an Arduino Mega shield.
 
 # AT28C EEPROM Programmer for Arduino Mega
 
@@ -21,6 +21,7 @@ There are two pieces: the Arduino firmware and the Python CLI.
 2) Added requirements.txt (commit 639b126)
 3) Reading without limit (-l) now reads from 0x0000 to 0xFFFF (commit b6906de)
 4) Offset (-o) now works without Limit (-l) (commit b6906de)
+5) Added --no_ouput argument that void print statements (commit 20230fa)
 
 ## Usage
 
@@ -47,6 +48,8 @@ python3 at28c_programmer.py [-w | -r | -c] -d DEVICE [-f FILE] [-l LIMIT] [-o OF
 --limit  N       -l     Limit of the amount of bytes to read or write.
 
 --offset N       -o     Offset the start address of the read or write operation. (This offsets the address the writing starts at, not where it starts in the binary file to write).
+
+--no_output      -n     Voids all print statements in loops to maximize performance
 
 ## Notes
 
